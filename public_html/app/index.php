@@ -1,5 +1,10 @@
 <?php 
 
+date_default_timezone_set('America/Mexico_City');
+$hora = date("G:a");
+$min= date("i:a");
+$seg=date("s:a");
+
 require_once('../vendor/autoload.php');
 header('../sesion.php');
 
@@ -8,9 +13,14 @@ $mpdf = new \Mpdf\Mpdf([
 ]);
 
 function getNombre(){
-    $nombre= $_POST["nombre"];
+    $nombre= "Roberto Ruiz";
     return $nombre;
-  }
+}
+
+function getPoints(){
+  $points = "80%";
+  return $points;
+}
 
 function getPlantilla(){  
 
@@ -25,8 +35,9 @@ function getPlantilla(){
           <span style="font-size:30px"><b><label> '.getNombre().' </label></b></span><br/><br/>
           <span style="font-size:25px"><i>a completado exitosamenta la certificacion de</i></span> <br/><br/>
           <span style="font-size:30px">Desarrollador Backend</span> <br/><br/>
-          <span style="font-size:20px">con un puntaje de <b>$grade.getPoints()%</b></span> <br/><br/><br/><br/>
-          <span style="font-size:25px"><i>el dia: <label> '.date("d/m/Y").' </label></i></span><br>
+          <span style="font-size:20px">con un puntaje de <b><label> '.getPoints().' </label></b></span> <br/><br/><br/><br/>
+          <span style="font-size:25px"><i>el dia: <label> '.date("d/m/Y").' </label></i></span>
+          <span style="font-size:25px"><i>a las: <label> '.date("G:i a").' </label></i></span><br>
         </div>
       </div>
     </body>';
