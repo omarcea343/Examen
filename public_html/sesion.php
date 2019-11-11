@@ -1,3 +1,15 @@
+<?php
+session_start();
+date_default_timezone_set('America/Mexico_City');
+
+$name = $_SESSION['nombre'];
+
+$hora = date("G:a");
+$min= date("i:a");
+$seg=date("s:a");
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -51,7 +63,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Inicio</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="sesion.php">Inicio</a>
           </li>
           <li class="nav-item dropdown mx-0 mx-lg-1">
             <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" id="navbarDropdownCertificaciones" data-toggle="dropdown">Certificaciones</a>
@@ -61,33 +73,39 @@
               <a class="dropdown-item" href="#certificaciones">Desarrollador de JAVA</a>
               <a class="dropdown-item" href="#certificaciones">Desarrollador Backend</a>
             </div>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contacto</a>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Acerca de</a>
-          </li>
           <li class="nav-item dropdown mx-0 mx-lg-1">
                     <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" id="navbarDropdownCertificaciones" data-toggle="dropdown">Cuenta</a>
                     <ul class="dropdown-menu dropdown-menu-right mt-2">
                        <li class="px-3 py-2">
-                           <form class="form" role="form" action="login.php" method="post"> 
-                               <div class="form-group">
-                                   <input name="nombre" id="nombreInput" placeholder="NOMBRE" class="form-control form-control-sm" type="text" required="">
-                               </div>
+                           <form class="form" role="form" action="index.php" method="post"> 
                                 <div class="form-group">
-                                    <input name="usuario" id="emailInput" placeholder="CORREO" class="form-control form-control-sm" type="text" required="">
-                                </div>
+                                  <p>Bienvenido 
+                                   
+                                   <?php  if($hora>=6 && $hora<=11){
+                                            echo "<br>Buenos dias<br>",$name;
+                                            }else{
+                                                if($hora>=12 && $hora<=18){
+                                                        echo "<br>Buenas tardes<br>",$_SESSION['nombre'];
+                                                    }else{
+                                                        /*if($hora>=19 && $hora<=23){
+                                                            echo "<br>Buenas noches"
+                                                        }*/
+                                                        echo "<br> Buenas noches<br>",$_SESSION['nombre'];
+                                                    }
+
+                                                } 
+                                      //echo $_SESSION['nombre']
+                                      ?>
+                                      
+                                    </p>
+                                    
+                                    
+                                </div>    
                                 <div class="form-group">
-                                    <input name="palabra_secreta" id="passwordInput" placeholder="CONTRASEÑA" class="form-control form-control-sm" type="password" required="">
+                                    <button type="submit" class="btn btn-primary btn-block">Salir</button>
+                                        
                                 </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Iniciar</button>
-                                </div>
-                                <div class="form-group text-center">
-                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Registro</a></small>
-                                </div>
+                            
                             </form>
                         </li>
                     </ul>
@@ -96,58 +114,17 @@
       </div>
     </div>
   </nav>
-<div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>REGISTRO</h3>
-                <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">x</button>
-            </div>
-            
-            <!--registro-->
-            <form class="form" role="form" action="pagina1.php" method="post" name="f1">
-            <div class="modal-body">
-              <input placeholder="NOMBRE" class="form-control form-control-sm" type="text" name="nombrer"></p>
-              <input placeholder="USUARIO" class="form-control form-control-sm" type="text" name="usuarior"></p>
-              <input placeholder="CONTRASEÑA" class="form-control form-control-sm" type="password" name="contrar"></p>
-              <input placeholder="REPITE CONTRASEÑA" class="form-control form-control-sm" type="password" name="valida"></p>
-              <input class="btn btn-primary btn-block" type="button" value="Comprobar si son iguales" onClick="comprobarClave()">
-                
-            </div>
-           
-            <div class="modal-footer">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Registrar</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-  <!-- Masthead -->
-  <header class="masthead bg-primary text-white text-center">
-    <div class="container d-flex align-items-center flex-column">
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
-      <!-- Masthead Avatar Image -->
-      <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt="">
-
-      <!-- Masthead Heading -->
-      <h1 class="masthead-heading text-uppercase mb-0">CertPro</h1>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
-      <!-- Masthead Subheading -->
-      <p class="masthead-subheading font-weight-light mb-0">Asegurando que llegues lejos.</p>
-
-    </div>
-  </header>
+  <form class="form" role="form" action="app/index.php" method="post" name="f1">
+    <input type="submit" value="Certificado">
+  </form>
 
   <!-- Portfolio Section -->
   <section class="page-section portfolio" id="certificaciones">
@@ -230,98 +207,8 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="page-section bg-primary text-white mb-0" id="about">
-    <div class="container">
-
-      <!-- About Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-white">Acerca de</h2>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
-      <!-- About Section Content -->
-      <div class="row">
-        <div class="col-lg-4 ml-auto">
-          <p class="lead">Somos una empresa con 10 años de experiencia impartiendo Certificacion Especializada Integral en el sector de TI, formando recursos humanos especializados en alta tecnología para cubrir la demanda del mercado nacional e internacional, estando presentes dentro de Instituciones de Nivel Medio Superior y Superior en México.</p>
-        </div>
-        <div class="col-lg-4 mr-auto">
-          <p class="lead">Nuestro éxito radica en el modelo “Blended E-Learnig” enfocado en la certificacion empresarial. Este se consolida como el “Guideline” europeo de capacitación. Complementa en todos los sentidos a la academia, insertando competencias laborales específicas, factor importante para preparar a los alumnos a través de casos reales, mismos que se analizan en el transcurso de la capacitación,  dando un  panorama real del mercado laboral.</p>
-          </div>
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="page-section" id="contact">
-    <div class="container">
-
-      <!-- Contact Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contactanos</h2>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
-      <!-- Contact Section Form -->
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Nombre</label>
-                <input class="form-control" id="name" type="text" placeholder="Nombre" required="required" data-validation-required-message="Por favor ingresa tu nombre.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Correo Electronico</label>
-                <input class="form-control" id="email" type="email" placeholder="Correo Electronico" required="required" data-validation-required-message="Porfavor ingresa tu direccion de correo.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Numero de Telefono</label>
-                <input class="form-control" id="phone" type="tel" placeholder="Numero de Telefono" required="required" data-validation-required-message="Porfavor ingresa tu numero de telefono.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                <label>Mensaje</label>
-                <textarea class="form-control" id="message" rows="5" placeholder="Mensaje" required="required" data-validation-required-message="Porfaor ingresa un mensaje."></textarea>
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <br>
-            <div id="success"></div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Enviar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-<!-- Footer -->
-<footer class="footer text-center">
+  <!-- Footer -->
+  <footer class="footer text-center">
     <div class="container">
       <div class="row">
 
@@ -399,6 +286,10 @@
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Certifica tu conocimiento en el uso de C y C++ al momento de desarrollar aplicaciones de escritorio.</p>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-book"></i>
+                  Tomar Examen
+                </button>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Cerrar Ventana
                 </button>
@@ -437,6 +328,10 @@
                 <img class="img-fluid rounded mb-5" src="img/portfolio/hyc.png" alt="">
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Demuestra tu conocimiento como desarrollador frontend a la hora de utilizar HTML y CSS para desarrollar aplicaciones web modernas.</p>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-book"></i>
+                  Tomar Examen
+                </button>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Cerrar Ventana
@@ -477,6 +372,10 @@
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Por medio de esta certificacion podras probar tu conocimiento a la hora de utilizar JAVA para la programacion orientada a objetos y en el desarrollo de aplicaciones nativas.</p>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-book"></i>
+                  Tomar Examen
+                </button>
+                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Cerrar Venatana
                 </button>
@@ -516,6 +415,10 @@
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Certifica tu conocimiento al ahora de utilizar PHP como lenguaje del servidor para desarrollar aplicaciones web dinamicas.</p>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
+                  <i class="fas fa-book"></i>
+                  Tomar Examen
+                </button>
+                <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Cerrar Ventana
                 </button>
@@ -527,20 +430,6 @@
     </div>
   </div>
 
-
-<script>
-  function comprobarClave(){
-    contrar = document.f1.contrar.value
-    valida = document.f1.valida.value
-
-    if (contrar == valida)
-       alert("Las dos claves son iguales...\nPuedes darle en la opcion de registrar")
-      
-    else
-       alert("Las dos claves son distintas...\nReescribe las contrasena; de nuevo")
-}  
-   
-</script>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -554,7 +443,6 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/freelancer.min.js"></script>
-
 </body>
 
 </html>
